@@ -1,0 +1,84 @@
+﻿@page
+@model CrashCarts.Pages.sandboxModel
+@{
+}
+
+
+
+
+<body>
+
+    Name: <input type="text" id="myText" value="Mickey">
+
+    <p>Click the button to change the value of the text field.</p>
+
+
+    <table>
+
+
+        <tr>
+            <th>col1</th>
+            <th>col2</th>
+            <th>col3</th>
+        </tr>
+
+
+        <tr>
+            <td class="t1"><input class="i1" /></td>
+            <td class="t2" value="Test"></td>
+            <td class="t3"></td>
+
+        </tr>
+
+
+    </table>
+
+    <button onclick="myFunction2()">Try it</button>
+
+
+
+</body>
+
+<script>
+    function myFunction() {
+        document.getElementById("myText").value = "Johnny Bravo";
+    }
+</script>
+
+<script>
+    function myFunction2() {
+        var l = document.getElementById("myText").value;
+        var e = document.getElementById("myText").value;
+        document.getElementById("t2").value = l;
+        document.getElementById("t3").value = e;
+    }
+</script>
+
+
+@*<body>
+    <table>
+        <tr>
+            <td name="discountPercent" class="productDiscount"><input /></td>
+            <td name="productPrice" class="productPrice"><input /></td>
+            <td name="quantity" type="number" min="0" class="input" style="width: 70px"></td>
+            <td name="Sum"></td>
+        </tr>
+        <tr>
+            <td name="discountPercent" class="productDiscount"><input /></td>
+            <td name="productPrice" class="productPrice"><input /></td>
+            <td name="quantity" type="number" min="0" class="input" style="width: 70px"></td>
+            <td name="Sum"></td>
+        </tr>
+    </table>
+    </body>
+
+    <script>
+        function onCountChange(rownumber) {
+            var discntPct = document.getElementsByName("discountPercent");
+            var prodPrice = document.getElementsByName("productPrice");
+            var qty = document.getElementsByName("quantity");
+            var sum = document.getElementsByName("Sum");
+
+            sum.innerText = qty[rownumber] * prodPrice[rownumber] * discntPct[rownumber]
+        }
+    </script>*@

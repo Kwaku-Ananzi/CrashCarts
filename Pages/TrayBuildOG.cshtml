@@ -1,0 +1,336 @@
+﻿@page "{TrayId:int}"
+@model CrashCarts.Pages.TrayBuildOGModel
+@{
+    ViewData["Title"] = "Tray";
+    Layout = "~/Pages/Shared/_LayoutQueue.cshtml";
+}
+
+<head>
+
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+    <style>
+
+        body {
+            align-items: center;
+            text-align: center;
+        }
+
+        table {
+            padding-bottom: 20px;
+            
+        }
+
+        th {
+            background-color: darkcyan;
+            color: white;
+            border: solid 1px;
+            border-color: black;
+        }
+
+        td {
+            border: solid 1px;
+            padding-right: 20px;
+        }
+
+        button {
+        }
+
+        .sub1 {
+            align-content: stretch;
+        }
+
+        input {
+            width: fit-content();
+            padding-right: 100px;
+        }
+
+            input:focus {
+                background-color: lightyellow;
+            }
+
+        #trayBarcode {
+            box-sizing: border-box;
+            width: 500px;
+            background-image: url('searchicon.png');
+            background-position: 14px 12px;
+            background-repeat: no-repeat;
+            font-size: 16px;
+            padding: 14px 20px 12px 45px;
+            /*border: none;*/
+            border: 1px solid #ddd;
+        }
+
+            #trayBarcode:focus {
+                outline: 3px solid #ddd;
+            }
+
+        label {
+            color: darkgray;
+            font-size: 16px;
+            padding: 14px 20px 12px 45px;
+        }
+
+
+        #draw2 {
+            display:block;
+            /*padding-left: 150px;*/
+            /*margin-left: auto;
+            margin-right: auto;*/
+            
+            /*align-items: center;*/
+        }
+
+
+        #draw3 {
+            /*padding-left: 150px;*/
+            /*margin-left: auto;
+            margin-right: auto;*/
+            align-items: center;
+            
+        }
+
+        .center {
+            /*border: 5px solid #FFFF00;*/
+            display:inline-block;
+            justify-content: center;
+        }
+        .sub1 {
+            display:flex;
+        }
+        .form-group
+        {
+            display:block;
+            
+            
+         }
+        .form-group input {
+            display:inline-block;
+        }
+            .form-group label {
+                min-width: 225px;
+                
+            }
+
+
+        .w3-input {
+            padding: 8px;
+            display: block;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            width: 25%
+        }
+
+    </style>
+
+</head>
+
+<body onload="load()">
+
+    @*@Model.Zodiac.id
+        @Model.Zodiac.barcode*@
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="alert alert-dismissable alert-primary box-shadow" style="background-color: #00393B; color: white">
+         @*style="background-color:purple; color:white">*@
+
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+        
+            @if(Model.Zodiac.id ==1)
+            {<h4>Pharmacy Drawer #1 - Adult</h4>}
+            @if(Model.Zodiac.id ==2)
+            {<h4>Pharmacy Drawer #2 - Adult</h4>}
+            @if(Model.Zodiac.id ==3)
+            {<h4>Materials Drawer #3 - Adult</h4>}
+            @if(Model.Zodiac.id ==4)
+            {<h4>Materials Drawer #4 - Adult</h4>}
+<p>Tray Barcode: @Model.Zodiac.barcode<br />
+    </div>
+    <br />
+
+    @*<form method="post">*@
+    <label>Tray Barcode: </label><input name="bc" id="trayBarcode" value=@Model.Barcode disabled />
+    <!--<button type="submit" onclick="getId()">Submit</button>--> @*<p>@if(  )</p>*@
+    @*</form>*@
+
+
+    <input id="zodid" value=@Model.Zodiac.id style="display:none" />
+    @if (Model.Zodiac.id == 1)
+    {
+    <p>This is pharmacy drawer 1</p>
+    }
+    else if (Model.Zodiac.id == 2)
+    {
+    <p>This is pharmacy drawer 2</p>
+    }
+    else if (Model.Zodiac.id == 3)
+    {
+    <h4>Materials Drawer 3</h4>
+    }
+    else if (Model.Zodiac.id == 4)
+    {
+    <p>This is materials drawer 4--JUNK DRAWER</p>
+    }
+    else
+    {
+    <p>Not sure which drawer you're trying to load...</p>
+    }
+<div id="draw1" style="display:none">
+    <label>First Expiration Date: </label><input type="date" name="Exp1" id="FirstExp1" required/>
+
+    <div>
+        <button class="sub1">Submit</button>
+    </div>
+</div>
+
+<div id="draw2" style="display:none">
+    <form method="get">
+        <div class="form-group">
+            <p>
+                <label>First Expiration Date</label>
+                <input class="w3-input" type="date" required>
+            </p>
+            <p>
+                <label>Lock Number</label>
+                <input class="w3-input" type="text" required>
+            </p>
+        </div>
+
+
+
+        <div>
+            <button class="sub1">Submit</button>
+        </div>
+    </form>
+</div>
+    
+
+<div class="center" id="draw3" style="display:none">
+    <form method="post" class="form-inline">
+        <input />
+        
+        <table>
+
+            <thead>
+                <tr>
+                    @*<th>Item</th>
+                    <th>Catalog</th>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Barcode</th>
+                    <th>Lot#</th>
+                    <th>Expiration</th>*@
+                    <th>ID</th>
+                    <th>Item</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                @*@for(int i = 0; i <Model.Item.Count(); i++)
+        {
+            <tr>
+                <td>@Model.Item.ElementAt(i).item</td>
+                <td>@Model.Item.ElementAt(i).id </td>
+                <td>@Model.TrayActivity.barcode </td>
+
+                <td><input asp-for="TrayActivity.barcode" /></td>
+            </tr>
+        }*@
+
+                @*@foreach (var item in Model.Item.ToList())*@
+                @for (int i = 0; i < Model.Item.Count(); i++)
+                
+                {
+                    <tr>
+                        <td> <input asp-for="TrayActivity.tray_item_id" value=@Model.Item.ElementAt(i).id /> </td>
+                        <td>@Model.Item.ElementAt(i).item</td>
+                        <td><input asp-for="TrayActivity.barcode" /></td>
+                    </tr>
+
+                }
+
+
+            </tbody>
+
+
+
+
+        </table>
+        <button type="submit" class="btn btn-secondary btn-sm">
+            <i class="fas fa-save">Save</i>
+        </button>
+    </form>
+    <br />
+    <div>
+
+    </div>
+
+</div>
+
+    <div class="center" id="draw4" style="display:none">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Catalog</th>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Barcode</th>
+                    <th>Lot#</th>
+                    <th>Expiration</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Item)
+
+                {
+                    <tr>
+                        <td> @item.item </td>
+                        <td> @item.catalog_nbr </td>
+                        <td> @item.item_descr </td>
+                        <td> @item.qty </td>
+                        <td><input id="barcode" /></td>
+                        <td id="barcodeLot"></td>
+                        <td id="barcodeExp"></td>
+
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+        <br />
+        <div>
+            <button class="sub1">Submit</button>
+        </div>
+    </div>
+
+
+
+</body>
+
+<script>
+
+    function load() {
+
+        var val = document.getElementById("zodid").value;
+        var elm = "draw" + val;
+        //alert(elm);
+
+        document.getElementById(elm).removeAttribute('style', 'display');
+        //if (val== 1)
+        //{
+        //    document.getElementById("draw1").removeAttribute('style', 'display');
+        //}
+    }
+
+</script>

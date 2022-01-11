@@ -1,0 +1,298 @@
+﻿@page
+@model CrashCarts.Pages.TrayModel
+@{
+    ViewData["Title"] = "Tray";
+    Layout = "~/Pages/Shared/_LayoutQueue.cshtml";
+}
+
+<head>
+
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+    <style>
+        table {
+            padding-bottom: 20px;
+        }
+
+        th {
+            background-color: darkcyan;
+            color: white;
+            border: solid 1px;
+            border-color: black;
+        }
+
+        td {
+            border: solid 1px;
+            padding-right: 20px;
+        }
+
+        button {
+        }
+
+        .sub1 {
+            align-content: stretch;
+        }
+
+        input {
+            width: fit-content();
+            padding-right: 100px;
+        }
+
+        input:focus
+        {
+            background-color:lightyellow;
+        }
+
+        #trayBarcode {
+            box-sizing: border-box;
+            width: 500px;
+            background-image: url('searchicon.png');
+            background-position: 14px 12px;
+            background-repeat: no-repeat;
+            font-size: 16px;
+            padding: 14px 20px 12px 45px;
+            /*border: none;*/
+            border: 1px solid #ddd;
+        }
+
+            #trayBarcode:focus {
+                outline: 3px solid #ddd;
+            }
+
+        label {
+            color: darkgray;
+            font-size: 16px;
+            padding: 14px 20px 12px 45px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="alert alert-dismissable alert-success">
+
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+        <h4>
+            Tip
+        </h4> Enter MA (Adult), MP (Pediatric) or MK (Kangaroo) in the Tray barcode scan field.<br /><p style="font-style:italic;">Example: MA-427921ZH</p>
+    </div>
+    <br />
+
+    <form method="post">
+        <label>Tray Barcode: </label><input name="bc" id="trayBarcode" placeholder="Please Scan the tray..." /> <button type="submit" onclick="getId()">Submit</button> @*<p>@if(  )</p>*@
+    </form>
+
+    
+    @*@if(Model.Trays.tray_type == "MA")
+                    {
+        <p>Materials Adult</p>
+                    }*@
+
+    @*<table id="tbltray">
+
+        @foreach (var i in Model.Tray)
+        {
+            <tr>
+                <td id="tid">@i.id</td>
+                <td>@i.barcode</td>
+                <td>@i.tray_type</td>
+
+            </tr>
+
+        }
+
+    </table>*@
+
+    <br />
+    <br />
+    <br />
+    <br />
+    
+    
+
+
+    @*@if(Request.Form["bc"] = null)
+            {
+        <p>No Data Entered</p>
+            }*@
+
+
+    <p style="display:none">Test1</p>
+    <p style="display:none">Test2</p>
+    <p style="display:none">Test3</p>
+
+
+    <br />
+    <br />
+
+
+
+
+    @*<table>
+            <tr>
+                <th>Item</th>
+                <th>Catalog</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Barcode</th>
+                <th>Lot#</th>
+                <th>Expiration</th>
+
+            </tr>
+            <tr>
+                <td>31470</td>
+                <td>7N8399</td>
+                <td>CONNECTOR MICRO CLAVE CLEAR</td>
+                <td>5</td>
+                <td><input id="barcode" /></td>
+                <td id="barcodeLot"></td>
+                <td id="barcodeExp"></td>
+            </tr>
+            <tr>
+                <td>270</td>
+                <td>CDL1007</td>
+                <td>PREP ALCOHOL PAD 200/BX</td>
+                <td>6</td>
+                <td><input id="barcode" /></td>
+                <td id="barcodeLot"></td>
+                <td id="barcodeExp"></td>
+            </tr>
+
+            <tr>
+                <td>3162</td>
+                <td>
+                    B10800
+                </td>
+                <td>
+                    SWAB 70% ISPRP 3.15% CHG 1ML
+                </td>
+                <td>6</td>
+                <td><input id="barcode" /></td>
+                <td id="barcodeLot"></td>
+                <td id="barcodeExp"></td>
+            </tr>
+
+
+            <tr>
+                <td>2848</td>
+                <td>
+                    8881540111
+                </td>
+                <td>
+                    CANNULA BLUNT VIAL ACCESS STRL
+                </td>
+                <td>5</td>
+                <td><input id="barcode" /></td>
+                <td id="barcodeLot"></td>
+                <td id="barcodeExp"></td>
+            </tr>
+
+            <tr>
+                <td>9890</td>
+                <td>
+                    305175
+                </td>
+                <td>
+                    NDL HPO 20GA 1IN RW BD PP REG
+                </td>
+                <td>5</td>
+                <td><input id="barcode" /></td>
+                <td id="barcodeLot"></td>
+                <td id="barcodeExp"></td>
+            </tr>
+
+            <tr>
+                <td>9870</td>
+                <td>
+                    11811022F
+                </td>
+                <td>
+                    NDL HYPO BLUNT 18GA 1.5IN
+                </td>
+                <td>4</td>
+                <td><input id="barcode" /></td>
+                <td id="barcodeLot"></td>
+                <td id="barcodeExp"></td>
+            </tr>
+
+
+
+        </table>
+        <br />
+        <button onclick="inputParse()" class="sub1">Submit</button>*@
+
+    <script>
+        function inputParse() {
+            var l = document.getElementById("barcode").value;
+            var e = document.getElementById("barcode").value;
+            document.getElementById("barcodeLot").value = document.getElementById("barcode").value;
+            document.getElementById("barcodeExp").value = e;
+
+        }
+
+    </script>
+
+    <script>
+        function trayType {
+
+            var tray = document.getElementById("trayBarcode").value
+            var ss =
+                                    var ma = "";
+            var mp = "";
+            var mk = "";
+
+            //document.getElementById("trayBarcode").value
+
+
+        }
+
+    </script>
+
+    <script>
+        function getId() {
+
+            var id = document.getElementById("trayBarcode").value;
+
+            document.getElementById("bcID").value = id;
+            //window.open("../TrayTest/" + id, "_self");
+            //window.location.href = 'https://google.com/' + id;
+
+
+            //alert(id);
+
+        }
+
+    </script>
+
+    <script>
+        function showid() {
+
+
+            @*if (@Model.Trays.id == null) {
+                var id = 1;
+            }
+            else {
+                var id = @Model.Trays.id;
+            }*@
+
+            var id = document.getElementById("Tid").value;
+
+            alert(id);
+
+        }
+
+
+    </script>
+
+
+</body>
+

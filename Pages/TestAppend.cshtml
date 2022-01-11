@@ -1,0 +1,36 @@
+﻿@page
+@model CrashCarts.Pages.TestAppendModel
+@{
+}
+
+
+<head>
+
+
+
+</head>
+
+<body>
+
+    <input id="BarcodeList"/>
+    <button onclick="getlist();">Submit</button>
+
+</body>
+
+
+<script>
+
+    function getlist() {
+        var s = document.getElementById("BarcodeList").value;
+        var t = Array();
+        t += s + ";";
+        alert("new value:" + s
+            + "Old values:" + t
+        );
+        
+        
+
+    }
+    
+
+</script>
